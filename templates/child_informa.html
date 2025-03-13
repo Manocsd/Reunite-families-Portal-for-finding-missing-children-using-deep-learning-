@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Page</title>
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Registration Page</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+
+  
+  font-family: "Poppins", sans-serif;
+}
+      body {
+        background-image: url('static/index.jpg');
+        
+          margin: 0;
+          padding: 0;
+      }
+  h1{
+    color: #fff;
+    font-size: 30px;
+    
+  }
+      a {
+          text-decoration: none;
+          color: #007bff;
+      }
+  
+      a {
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        color: #fff; /* White text color for navbar links */
+        background-color: #0073e6; /* Official blue color for navbar links */
+        border-radius: 5px;
+    }
+
+    a:hover {
+        background-color: #0057b3; /* Darker blue on hover */
+    }
+
+    /* Content styles */
+    .content {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for content */
+    }
+  
+      .form {
+          max-width: 500px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #ffffffd5;
+          border-radius: 5px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+  
+      .form label {
+          font-weight: bold;
+         
+          
+          color: black;
+      }
+  
+      .form input[type="text"],
+      .form input[type="email"] {
+          width: 100%;
+          padding: 10px;
+          margin: 5px 0;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+  
+      .form input[type="file"] {
+          margin-top: 5px;
+      }
+  
+      .form input[type="submit"] {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-top: 10px;
+      }
+  
+      .form input[type="submit"]:hover {
+          background-color: #0056b3;
+      }
+      .backbtn{
+            position: fixed;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+    
+  </head>
+  <body><center>
+    
+ 
+
+    <a href="/vol_login" class="backbtn">Back</a>
+  
+
+        <h1>Registration Form</h1>
+      
+        <form class="form" action='/child_informa' method="POST" enctype="multipart/form-data">
+
+            <table>
+                
+                <tr> 
+                    <td> <label for="childname">Child Name</label><br> </td>
+                    <td> <input type="text" id="childname" class="form-control" name="childname" oninput="validateName()" required><br>
+                      <span id="name-error" style="color:red;"></span>
+                    </td>
+                    </tr>
+    
+                    <tr>
+                    <td> <label for="volnname">Volunteer Name</label><br> </td>
+                    <td> <input type="text" id="volnname" class="form-control" name="volnname" oninput="validateName1()" required><br>
+                      <span id="name1-error" style="color:red;"></span>
+                    </td>
+                    
+                    </tr>
+                    
+                    <tr>
+                    <td><label for="phone">Phone number</label><br></td>
+                    <td><input type="text" id="phone" class="form-control" name="phone" placeholder="Enter Registerd Phone Number" oninput="validatePhone()" required><br>
+                      <span id="phone-error" style="color:red;"></span>
+                    </td>
+                    </tr>
+    
+                    <tr>
+                    <td><label for="email">Email</label><br></td>
+                    <td><input type="email" id="email" class="form-control" name="email" placeholder="Enter Registerd Email Id" oninput="validateEmail()" required><br>
+                      <span id="email-error" style="color:red;"></span>
+                    </td>
+                   
+                    </tr>
+    
+                    <tr>
+                    <td><label>Address</label><br></td>
+                    <td><input type="text" class="form-control" name="address" required><br></td>
+                    </tr>
+    
+                    <tr>
+                    <td><label for="aadhar">Aadhar Number</label></td>
+                    <td><input type="text" id="aadhar" class="form-control" name="aadhar" oninput="validateAdhar()" required><br>
+                      <span id="aadhar-error" style="color:red;"></span>
+                    </td>
+                    </tr>
+    
+
+                <tr>
+                <td><label>Upload picture</label></td>  
+                <td><input type="file" name="image1" required></td>
+                </tr>
+                                   
+                </table>  
+                <br>
+                <input type="submit"  value="Submit">
+            </form>
+          </center>
+
+          <script>
+            // Validate Name (only letters and spaces)
+            function validateName() {
+                const name = document.getElementById('childname').value;
+                const nameError = document.getElementById('name-error');
+                const namePattern = /^[A-Za-z\s]+$/;
+                if (!name.match(namePattern)) {
+                    nameError.textContent = 'Name should only contain letters and spaces.';
+                    return false;
+                }
+                nameError.textContent = '';
+                return true;
+            }
+
+            function validateName1() {
+                const name = document.getElementById('volnname').value;
+                const nameError = document.getElementById('name1-error');
+                const namePattern = /^[A-Za-z\s]+$/;
+                if (!name.match(namePattern)) {
+                    nameError.textContent = 'Name should only contain letters and spaces.';
+                    return false;
+                }
+                nameError.textContent = '';
+                return true;
+            }
+    
+            // Validate Phone (10 digits, starting with 9, 8, 7, or 6)
+            function validatePhone() {
+                const phone = document.getElementById('phone').value;
+                const phoneError = document.getElementById('phone-error');
+                const phonePattern = /^[6-9]\d{9}$/;
+                if (!phone.match(phonePattern)) {
+                    phoneError.textContent = 'Phone number must be 10 digits and start with 9, 8, 7, or 6.';
+                    return false;
+                }
+                phoneError.textContent = '';
+                return true;
+            }
+            
+            function validateAdhar() {
+                const phone = document.getElementById('aadhar').value;
+                const phoneError = document.getElementById('aadhar-error');
+                const phonePattern = /^[1-9]\d{11}$/;
+                if (!phone.match(phonePattern)) {
+                    phoneError.textContent = 'Enter Correct Aadhar Number';
+                    return false;
+                }
+                phoneError.textContent = '';
+                return true;
+            }
+            // Validate Email (correct email format)
+            function validateEmail() {
+                const email = document.getElementById('email').value;
+                const emailError = document.getElementById('email-error');
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+                if (!email.match(emailPattern)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    return false;
+                }
+                emailError.textContent = '';
+                return true;
+            }
+    
+            // Final form validation
+            function validateForm() {
+                return validateName() && validatePhone() && validateEmail();
+            }
+        </script>
+  </body>
+  </html>
+  

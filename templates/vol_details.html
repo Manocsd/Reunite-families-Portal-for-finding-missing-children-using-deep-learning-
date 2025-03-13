@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Page</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+
+  
+  font-family: "Poppins", sans-serif;
+}
+        body {
+            background-image: url('static/index.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #fdf8f8; /* Dark text color */
+        }
+
+        h1 {
+            text-align: center;
+            color: #0073e6; /* Official blue color */
+        }
+
+        /* Back link style */
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            color: #fff; /* White text color for navbar links */
+            background-color: #0073e6; /* Official blue color for navbar links */
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #0057b3; /* Darker blue on hover */
+        }
+
+        /* Form container styles */
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(247, 247, 250, 0.781); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for content */
+            margin-top: 100px;
+        }
+
+        /* Form label and input styles */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #050303; /* Dark text color */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type='password'] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #0073e6; /* Official blue color */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 150px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0057b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/index">Back</a>
+    <div class="form-container">
+        <h1> Volunteer Registration Form</h1>
+        <p style="color: red;">{{message2}}</p>
+        <form action="/vol_details" method="post" onsubmit="return validateForm()">
+            <label for="name">Volunteer Name:</label>
+            <input type="text" id="name" name="name" required oninput="validateName()">
+            <span id="name-error" style="color:red;"></span>
+
+
+            <label for="phone">contact:</label>
+            <input type="text" id="phone" name="phone" required oninput="validatePhone()">
+            <span id="phone-error" style="color:red;"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required oninput="validateEmail()">
+            <span id="email-error" style="color:red;"></span> 
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br><br>
+
+            <input type="submit" value="Register">
+        </form>
+      
+    </div>
+    <script>
+        // Validate Name (only letters and spaces)
+        function validateName() {
+            const name = document.getElementById('name').value;
+            const nameError = document.getElementById('name-error');
+            const namePattern = /^[A-Za-z\s]+$/;
+            if (!name.match(namePattern)) {
+                nameError.textContent = 'Name should only contain letters and spaces.';
+                return false;
+            }
+            nameError.textContent = '';
+            return true;
+        }
+
+        // Validate Phone (10 digits, starting with 9, 8, 7, or 6)
+        function validatePhone() {
+            const phone = document.getElementById('phone').value;
+            const phoneError = document.getElementById('phone-error');
+            const phonePattern = /^[6-9]\d{9}$/;
+            if (!phone.match(phonePattern)) {
+                phoneError.textContent = 'Phone number must be 10 digits and start with 9, 8, 7, or 6.';
+                return false;
+            }
+            phoneError.textContent = '';
+            return true;
+        }
+
+        // Validate Email (correct email format)
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('email-error');
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            if (!email.match(emailPattern)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                return false;
+            }
+            emailError.textContent = '';
+            return true;
+        }
+
+        // Final form validation
+        function validateForm() {
+            return validateName() && validatePhone() && validateEmail();
+        }
+    </script>
+</body>
+
+</html>
